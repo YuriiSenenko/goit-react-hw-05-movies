@@ -1,6 +1,12 @@
 import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-
+import {
+  BackBTN,
+  Info,
+  InfoList,
+  AdditionalInfo,
+  Links,
+} from './MovieDetails.styled';
 const MovieDetails = () => {
   const { movieId } = useParams();
   // console.log(movieId);
@@ -54,38 +60,45 @@ https://api.themoviedb.org/3/movie/${movieId}?api_key=a0d13cdb64d238d9f40292183a
   return (
     <>
       <div>
-        <Link to={backLink}>Go back</Link>
-        <img
-          src={`https://www.themoviedb.org/t/p/w500${poster_path}`}
-          alt=""
-        ></img>
-        <h1>
-          {title} ({dateRelease()})
-        </h1>
-        <p>Rating: {vote_average.toFixed(1)}</p>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>{genres.map(genre => genre.name).join(' ')}</p>
+        <BackBTN type="button">
+          <Link to={backLink}>Go back</Link>
+        </BackBTN>
+
+        <Info>
+          <img
+            src={`https://www.themoviedb.org/t/p/w500${poster_path}`}
+            alt=""
+          ></img>
+          <InfoList>
+            <h1>
+              {title} ({dateRelease()})
+            </h1>
+            <p>Rating: {vote_average.toFixed(1)}</p>
+            <h2>Overview</h2>
+            <p>{overview}</p>
+            <h3>Genres</h3>
+            <p>{genres.map(genre => genre.name).join(' ')}</p>
+          </InfoList>
+        </Info>
       </div>
-      <div>
+      <AdditionalInfo>
         <h4>Additional information</h4>
         <ul>
-          <li>
+          <Links>
             <Link to="cast" state={location.state}>
               Cast
             </Link>
-          </li>
-          <li>
+          </Links>
+          <Links>
             <Link to="reviews" state={location.state}>
               Reviews
             </Link>
-          </li>
+          </Links>
         </ul>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </div>
+      </AdditionalInfo>
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
