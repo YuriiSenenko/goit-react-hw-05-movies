@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const MovieDetails = () => {
@@ -82,7 +82,9 @@ https://api.themoviedb.org/3/movie/${movieId}?api_key=a0d13cdb64d238d9f40292183a
             </Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );
