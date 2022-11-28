@@ -17,11 +17,11 @@ https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=a0d13cdb64d238d9f4
       });
   }, [movieId]);
 
-  if (reviews.length === 0) {
-    console.log('дані відсутні');
-  } else {
-    console.log(reviews);
-  }
+  // if (reviews.length === 0) {
+  //   console.log('дані відсутні');
+  // } else {
+  //   console.log(reviews);
+  // }
 
   // if (!reviews) {
   //   return;
